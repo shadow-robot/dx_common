@@ -8,7 +8,6 @@ for integrating and controlling the DEX-EE hand in robotic applications.
 
 - **ROS Messages and Services**: Predefined ROS message and service definitions for communicating with the DEX-EE hand.
 - **Robot Descriptions**: URDF/Xacro files for the DEX-EE hand, enabling simulation and visualization in tools like RViz.
-- **Modular Design**: Minimal and reusable components for easy integration into larger robotic systems.
 
 ## License
 
