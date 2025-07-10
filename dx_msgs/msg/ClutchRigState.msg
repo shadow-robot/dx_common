@@ -1,0 +1,12 @@
+Header header
+string name
+string[] joint_name
+string[] actuator_name
+float64 output_loadcell
+uint16 output_loadcell_raw
+float64[] joint_position
+uint16[] joint_position_raw
+float64[] actuator_velocity
+float64[] actuator_position
+int16[] actuator_pwm
+dx_msgs/ClutchActuatorState[] ca_states
