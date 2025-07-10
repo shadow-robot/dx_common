@@ -8,6 +8,8 @@ add_message_files(
   FILES
   DxFingerState.msg
   DxOneFingerState.msg
+  ClutchRigState.msg
+  ClutchActuatorState.msg
   DxData.msg
   DxState.msg
   DxCommand.msg
