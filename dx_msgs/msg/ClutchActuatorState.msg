@@ -10,4 +10,4 @@ bool clutch_b_enabled
 bool clutch_b_engaged
 bool clutch_c_enabled
 bool clutch_c_engaged
-float64 output_velocity 
+float64 output_velocity
