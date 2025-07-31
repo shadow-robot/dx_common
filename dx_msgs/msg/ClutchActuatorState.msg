@@ -1,5 +1,13 @@
 string name
+float64[] tendon_tension
+uint16[] loadcell_raw
+float64[] spool_position
+uint16[] position_raw
+float64[] spool_velocity
+bool clutch_a_enabled
 bool clutch_a_engaged
+bool clutch_b_enabled
 bool clutch_b_engaged
+bool clutch_c_enabled
 bool clutch_c_engaged
 float64 output_velocity 
