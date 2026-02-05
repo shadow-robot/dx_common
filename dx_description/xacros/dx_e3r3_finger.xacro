@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (C) 2024-2026 Shadow Robot Company Ltd - All Rights Reserved. Proprietary and Confidential.
+ Unauthorized copying of the content in this file, via any medium is strictly prohibited.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="macro_e3r3_finger" params="prefix:=^ finger_id parent *origin">
+    <joint name="${prefix}world_joint_${finger_id}" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}" />
+      <child link="${prefix}${finger_id}_base" />
+    </joint>
+    <link name="${prefix}${finger_id}_base">
+      <inertial>
+        <origin rpy="1.5707 0 0" xyz="-1.30462232073506e-05 -0.0890545424979884 0.00045858190188918893 "/>
+        <mass value="0.89937782"/>
+        <inertia ixx="0.0024900529476665615" ixy="-1.0049950074763391e-07" ixz="-2.1821824210422672e-07" iyy="0.0022936902305646604" iyz="1.8955596520453447e-06" izz="0.0006773493311454545"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5707 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/F0_base.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5707 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/collision/F0_base.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}${finger_id}_base">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <link name="${prefix}${finger_id}_J0_link">
+      <inertial>
+        <origin xyz="-0.0002171478112126603 0.062391354 0.009831462605538131"/>
+        <mass value="0.13077995"/>
+        <inertia ixx="6.637052873451466e-05" ixy="3.159178456487345e-08" ixz="5.047967765250655e-07" iyy="5.309491755924392e-05" iyz="-9.40024171556021e-06" izz="4.638346622651747e-05"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0.077 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://dx_description/meshes/dx_e3r3_finger/F0_J0_link.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0.077 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://dx_description/meshes/dx_e3r3_finger/collision/F0_J0_link.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}${finger_id}_J0_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <joint name="${prefix}${finger_id}_J0" type="revolute">
+      <origin xyz="0 -0.14073 -0.051327" rpy="2.0944 0 0" />
+      <parent link="${prefix}${finger_id}_base" />
+      <child link="${prefix}${finger_id}_J0_link" />
+      <axis xyz="0 -1 0" />
+      <limit lower="-0.8727" upper="0.8727" effort="1.5" velocity="3.1415" />
+      <dynamics friction="0.001"/>
+    </joint>
+    <link name="${prefix}${finger_id}_proximal">
+      <inertial>
+        <origin xyz="-0.00020256 0.0024322 0.02375091" rpy="0 0 0" />
+        <mass value="0.09614332" />
+        <inertia ixx="0.00004332" ixy="-0.00000017" ixz="-0.00000349" iyy="0.00004756" iyz="0.00000055"
+                 izz="0.00002008" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://dx_description/meshes/dx_e3r3_finger/F0_proximal.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/collision/F0_proximal.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}${finger_id}_proximal">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <joint name="${prefix}${finger_id}_J1" type="revolute">
+      <origin xyz="0 0.0765883365730207 0.0299999999999999" rpy="0 0 0" />
+      <parent link="${prefix}${finger_id}_J0_link" />
+      <child link="${prefix}${finger_id}_proximal" />
+      <axis xyz="1 0 0" />
+      <limit lower="-1.396" upper="0.785" effort="1.2" velocity="3.1415" />
+      <dynamics friction="0.001"/>
+    </joint>
+    <link name="${prefix}${finger_id}_middle">
+      <inertial>
+        <origin xyz="-0.00026744 -0.00004338 0.01669764" rpy="0 0 0" />
+        <mass value="0.05585897" />
+        <inertia ixx="0.00001447" ixy="-0.00000005" ixz="-0.00000004" iyy="0.00001686" iyz="-0.00000007"
+                 izz="0.00000973" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://dx_description/meshes/dx_e3r3_finger/F0_middle.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/collision/F0_middle.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}${finger_id}_middle">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <joint name="${prefix}${finger_id}_J2" type="revolute">
+      <origin xyz="0 0 0.05" rpy="0 0 0" />
+      <parent link="${prefix}${finger_id}_proximal" />
+      <child link="${prefix}${finger_id}_middle" />
+      <axis xyz="1 0 0" />
+      <limit lower="0" upper="1.396" effort="0.7" velocity="3.1415" />
+      <dynamics friction="0.001"/>
+    </joint>
+    <link name="${prefix}${finger_id}_distal">
+      <inertial>
+        <origin xyz="0.00084325 0.00164346 0.01482169" rpy="0 0 0" />
+        <mass value="0.02766365" />
+        <inertia ixx="0.0000051" ixy="0" ixz="0.00000028" iyy="0.00000506" iyz="-0.00000034" izz="0.00000198" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://dx_description/meshes/dx_e3r3_finger/F0_distal.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/collision/F0_distal.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}${finger_id}_distal">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <joint name="${prefix}${finger_id}_J3" type="revolute">
+      <origin xyz="0 0 0.035" rpy="0 0 0" />
+      <parent link="${prefix}${finger_id}_middle" />
+      <child link="${prefix}${finger_id}_distal" />
+      <axis xyz="1 0 0" />
+      <limit lower="-0.523" upper="1.485" effort="0.35" velocity="3.1415" />
+      <dynamics friction="0.001"/>
+    </joint>
+    <link name="${prefix}${finger_id}_tip" />
+    <joint name="${prefix}${finger_id}_distal_tip" type="fixed">
+        <parent link="${prefix}${finger_id}_distal" />
+        <child link="${prefix}${finger_id}_tip" />
+        <origin xyz="0 0.003 0.033" rpy="0 0 0" />
+    </joint>
+    <!-- These transmissions are wrongly configured and fail to be loaded by the real robot -->
+    <!-- We still need to define them in order to be able to launch the robot in simulation -->
+    <transmission name="trans_${prefix}${finger_id}_J0">
+      <type>UnusedTransmission</type>
+      <joint name="${prefix}${finger_id}_J0">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}${finger_id}_J0_motor">
+        <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <transmission name="trans_${prefix}${finger_id}_J1">
+      <type>UnusedTransmission</type>
+      <joint name="${prefix}${finger_id}_J1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}${finger_id}_J1_motor">
+        <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <transmission name="trans_${prefix}${finger_id}_J2">
+      <type>UnusedTransmission</type>
+      <joint name="${prefix}${finger_id}_J2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}${finger_id}_J2_motor">
+        <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <transmission name="trans_${prefix}${finger_id}_J3">
+      <type>UnusedTransmission</type>
+      <joint name="${prefix}${finger_id}_J3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}${finger_id}_J3_motor">
+        <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+</robot>

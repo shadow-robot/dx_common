@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (C) 2024-2026 Shadow Robot Company Ltd - All Rights Reserved. Proprietary and Confidential.
+ Unauthorized copying of the content in this file, via any medium is strictly prohibited.
+-->
+
+<robot name="e3_r3_hand" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="e3_r3_hand" params="prefix:=^">
+    <xacro:include filename="$(find dx_description)/xacros/dx_e3r3_finger.xacro" />
+
+    <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F0" parent="world">
+      <origin xyz="0 0.05 0.017" rpy="0 0 0"/>
+    </xacro:macro_e3r3_finger>
+  </xacro:macro>
+</robot>
