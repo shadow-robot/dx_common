@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Software License Agreement (BSD License)
+ Copyright © 2026 belongs to Shadow Robot Company Ltd.
+ All rights reserved.
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+   1. Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+   3. Neither the name of Shadow Robot Company Ltd nor the names of its contributors
+      may be used to endorse or promote products derived from this software without
+      specific prior written permission.
+ This software is provided by Shadow Robot Company Ltd "as is" and any express
+ or implied warranties, including, but not limited to, the implied warranties of
+ merchantability and fitness for a particular purpose are disclaimed. In no event
+ shall the copyright holder be liable for any direct, indirect, incidental, special,
+ exemplary, or consequential damages (including, but not limited to, procurement of
+ substitute goods or services; loss of use, data, or profits; or business interruption)
+ however caused and on any theory of liability, whether in contract, strict liability,
+ or tort (including negligence or otherwise) arising in any way out of the use of this
+ software, even if advised of the possibility of such damage.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="macro_e3r3_mounting_plate" params="prefix:=^ parent mounted_tool *origin">
+    <!-- Link declarations -->
+    <link name="${prefix}mounting_plate_base" > <!-- This is the base of the mounting plate, the side which attaches to an arm -->
+      <!-- <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.25" />
+      </inertial> -->
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${-pi/4.0}" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/mounting_plates/G-SHW063_Tool_change_plate/G-SHW063_Tool_change_plate_base.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.0 0.0 0.0 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${-pi/4.0}" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/mounting_plates/G-SHW063_Tool_change_plate/collision/G-SHW063_Tool_change_plate_base.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}mounting_plate_top" > <!-- This is the top of the mounting plate, the side which attaches to a tool -->
+      <!-- <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+      </inertial> -->
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${-pi/4.0}" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/mounting_plates/G-SHW063_Tool_change_plate/G-SHW063_Tool_change_plate_top.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.0 0.0 0.0 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${-pi/4.0}" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/mounting_plates/G-SHW063_Tool_change_plate/collision/G-SHW063_Tool_change_plate_top.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint declarations -->
+    <joint name="${prefix}mounting_plate_world_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${prefix}mounting_plate_base" />
+    </joint>
+
+    <joint name="${prefix}mounting_plate_top_bottom" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}mounting_plate_base" />
+      <child link="${prefix}mounting_plate_top" />
+    </joint>
+
+    <joint name="${prefix}mounting_plate_tool_joint" type="fixed">
+      <origin xyz="0 0 0.038" rpy="0 0 0" />
+      <parent link="${prefix}mounting_plate_top" />
+      <child link="${mounted_tool}" />
+    </joint>
+
+    <!-- Gazebo -->
+    <gazebo reference="${prefix}mounting_plate_base">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="${prefix}mounting_plate_top">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

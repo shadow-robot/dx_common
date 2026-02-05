@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Software License Agreement (BSD License)
+ Copyright © 2026 belongs to Shadow Robot Company Ltd.
+ All rights reserved.
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+   1. Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+   3. Neither the name of Shadow Robot Company Ltd nor the names of its contributors
+      may be used to endorse or promote products derived from this software without
+      specific prior written permission.
+ This software is provided by Shadow Robot Company Ltd "as is" and any express
+ or implied warranties, including, but not limited to, the implied warranties of
+ merchantability and fitness for a particular purpose are disclaimed. In no event
+ shall the copyright holder be liable for any direct, indirect, incidental, special,
+ exemplary, or consequential damages (including, but not limited to, procurement of
+ substitute goods or services; loss of use, data, or profits; or business interruption)
+ however caused and on any theory of liability, whether in contract, strict liability,
+ or tort (including negligence or otherwise) arising in any way out of the use of this
+ software, even if advised of the possibility of such damage.
+-->
+
+<robot name="e3_r3_hand" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="e3_r3_hand" params="prefix:=^">
+    <link name="${prefix}hand_base">
+      <inertial>
+        <origin xyz="0.00024269 0.0064896 0.05011689" rpy="0 0 0" />
+        <mass value="0.53506724" />
+        <inertia ixx="0.00235606" ixy="-0.00000318" ixz="0.00001251"
+                 iyy="0.00262644" iyz="-0.00010584" izz="0.00095084" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/Hand_Base.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/dx_e3r3_finger/collision/Hand_Base.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}hand_base">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <!-- Create a virtual end effector link that will be useful for arm IK -->
+    <link name="${prefix}end_effector"/>
+    <joint name="${prefix}ee_fixed_joint" type="fixed">
+      <parent link="${prefix}hand_base"/>
+      <child link="${prefix}end_effector"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.25"/>
+    </joint>
+
+    <xacro:include filename="$(find dx_description)/xacros/dx_e3r3_finger.xacro" />
+    <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F0" parent="${prefix}hand_base">
+      <origin xyz="0 0.05 0.017" rpy="-1.5707 0 0"/>
+    </xacro:macro_e3r3_finger>
+    <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F1" parent="${prefix}hand_base">
+      <origin xyz="0.0384 -0.0287 0.017" rpy="-1.5707 0 -2.8159"/>
+    </xacro:macro_e3r3_finger>
+    <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F2" parent="${prefix}hand_base">
+      <origin xyz="-0.0384 -0.02870 0.017" rpy="-1.5707 0 2.8159"/>
+    </xacro:macro_e3r3_finger>
+  </xacro:macro>
+</robot>

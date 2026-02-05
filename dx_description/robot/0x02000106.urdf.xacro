@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  Software License Agreement (BSD License)
- Copyright © 2024-2026 belongs to Shadow Robot Company Ltd.
+ Copyright © 2026 belongs to Shadow Robot Company Ltd.
  All rights reserved.
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -23,20 +23,16 @@
  or tort (including negligence or otherwise) arising in any way out of the use of this
  software, even if advised of the possibility of such damage.
 -->
-<package>
-  <name>dx_msgs</name>
-  <version>0.0.1</version>
-  <description>The dx_msgs package</description>
 
-  <maintainer email="software@shadowrobot.com">Shadow Robot software team</maintainer>
-  <author>Daniel Greenwald</author>
-  <license>Private</license>
-
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>std_msgs</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>message_generation</build_depend>
-  <run_depend>std_msgs</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>message_runtime</run_depend>
-</package>
+<robot name="e3_r3_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find dx_description)/robot/0x02000106.xacro" />
+  <xacro:arg name="prefix" default="" />
+  <link name="world" />
+  <xacro:e3_r3_hand prefix="$(arg prefix)" />
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <!-- <robotNamespace>/</robotNamespace>
+        <legacyModeNS>false</legacyModeNS> -->
+    </plugin>
+  </gazebo>
+</robot>
