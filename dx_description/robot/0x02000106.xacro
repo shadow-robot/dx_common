@@ -24,8 +24,8 @@
  software, even if advised of the possibility of such damage.
 -->
 
-<robot name="e3_r3_hand" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="e3_r3_hand" params="prefix:=^">
+<robot name="dexee_config_1_hand" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="dexee_config_1_hand" params="prefix:=^">
     <xacro:include filename="$(find dx_description)/xacros/dx_e3r3_finger.xacro" />
 
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F0" parent="world">

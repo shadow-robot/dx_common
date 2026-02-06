@@ -24,19 +24,19 @@
  software, even if advised of the possibility of such damage.
 -->
 
-<robot name="dexee_config_1_hand" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="dexee_config_1_hand" params="prefix:=^">
+<robot name="dexee_config_2_left_hand" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="dexee_config_2_left_hand" params="prefix:=^">
     <link name="${prefix}hand_base">
       <inertial>
-        <origin xyz="0.00024269 0.0064896 0.05011689" rpy="0 0 0" />
+        <origin xyz="0.0176605661792342 -0.040301709672928 0.0592639986942411" rpy="0 0 0" />
         <mass value="0.53506724" />
-        <inertia ixx="0.00235606" ixy="-0.00000318" ixz="0.00001251"
-                 iyy="0.00262644" iyz="-0.00010584" izz="0.00095084" />
+        <inertia ixx="0.00362636445124211" ixy="0.000732417243232051" ixz="-0.000377582935294335"
+                 iyy="0.00200238966610271" iyz="-3.61002555746394E-05" izz="0.00423035114084856" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://dx_description/meshes/hand_bases/Config_1_Hand_Base.dae" />
+          <mesh filename="package://dx_description/meshes/hand_bases/Config_2_Left_Hand_Base.dae" />
         </geometry>
         <material name="">
           <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
@@ -45,7 +45,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://dx_description/meshes/hand_bases/collision/Config_1_Hand_Base.stl" />
+          <mesh filename="package://dx_description/meshes/hand_bases/collision/Config_2_Left_Hand_Base.stl" />
         </geometry>
       </collision>
     </link>
@@ -63,13 +63,13 @@
 
     <xacro:include filename="$(find dx_description)/xacros/dx_e3r3_finger.xacro" />
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F0" parent="${prefix}hand_base">
-      <origin xyz="0 0.05 0.017" rpy="-1.5707 0 0"/>
+      <origin xyz="0.0882673027707308 -0.12823624685039 0.0575255687317372" rpy="-0.171933713098972 -0.77031903290098 -1.32641633433279"/>
     </xacro:macro_e3r3_finger>
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F1" parent="${prefix}hand_base">
-      <origin xyz="0.0384 -0.0287 0.017" rpy="-1.5707 0 -2.8159"/>
+      <origin xyz="0.0495780670511493 -0.0794348993309075 0.00872422121225381" rpy="-0.65369072339009 -0.471832673707711 -0.535502901560618"/>
     </xacro:macro_e3r3_finger>
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F2" parent="${prefix}hand_base">
-      <origin xyz="-0.0384 -0.02870 0.017" rpy="-1.5707 0 2.8159"/>
+      <origin xyz="-0.0375495099984522 -0.105081515549682 0.00891499330831318" rpy="0 0.78539816339746 1.5707963267949"/>
     </xacro:macro_e3r3_finger>
   </xacro:macro>
 </robot>
