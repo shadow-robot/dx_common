@@ -63,13 +63,13 @@
 
     <xacro:include filename="$(find dx_description)/xacros/dx_e3r3_finger.xacro" />
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F0" parent="${prefix}hand_base">
-      <origin xyz="0.0882673027707308 -0.12823624685039 0.0575255687317372" rpy="-0.171933713098972 -0.77031903290098 -1.32641633433279"/>
+      <origin xyz="0.0882673027707308 -0.12823624685039 0.0575255687317372" rpy="-1.74273004 -0.77031903 -1.32641633"/>
     </xacro:macro_e3r3_finger>
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F1" parent="${prefix}hand_base">
-      <origin xyz="0.0495780670511493 -0.0794348993309075 0.00872422121225381" rpy="-0.65369072339009 -0.471832673707711 -0.535502901560618"/>
+      <origin xyz="0.0495780670511493 -0.0794348993309075 0.00872422121225381" rpy="-2.22448705 -0.47183267 -0.5355029"/>
     </xacro:macro_e3r3_finger>
     <xacro:macro_e3r3_finger prefix="${prefix}" finger_id="F2" parent="${prefix}hand_base">
-      <origin xyz="-0.0375495099984522 -0.105081515549682 0.00891499330831318" rpy="0 0.78539816339746 1.5707963267949"/>
+      <origin xyz="-0.0375495099984522 -0.105081515549682 0.00891499330831318" rpy="-1.57079633  0.78539816  1.57079633"/>
     </xacro:macro_e3r3_finger>
   </xacro:macro>
 </robot>
