@@ -24,15 +24,15 @@
  software, even if advised of the possibility of such damage.
 -->
 
-<robot name="dexee_config_1_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find dx_description)/robot/0x02000105.xacro" />
+<robot name="dexee_config_2_left_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find dx_description)/robot/0x02000109.xacro" />
   <xacro:arg name="prefix" default="" />
   <link name="world" />
   <joint name="$(arg prefix)world_joint" type="fixed">
     <parent link="world" />
     <child link="$(arg prefix)hand_base" />
   </joint>
-  <xacro:dexee_config_1_hand prefix="$(arg prefix)" />
+  <xacro:dexee_config_2_left_hand prefix="$(arg prefix)" />
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
         <!-- <robotNamespace>/</robotNamespace>
