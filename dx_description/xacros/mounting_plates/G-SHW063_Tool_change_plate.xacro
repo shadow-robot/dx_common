@@ -25,7 +25,7 @@
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="macro_e3r3_mounting_plate" params="prefix:=^ parent mounted_tool *origin">
+  <xacro:macro name="macro_e3r3_mounting_plate" params="prefix:=^ parent mounted_tool mounted_tool_origin_rpy *origin">
     <!-- Link declarations -->
     <link name="${prefix}mounting_plate_base" > <!-- This is the base of the mounting plate, the side which attaches to an arm -->
       <!-- <inertial>
@@ -85,7 +85,7 @@
     </joint>
 
     <joint name="${prefix}mounting_plate_tool_joint" type="fixed">
-      <origin xyz="0 0 0.038" rpy="0 0 0" />
+      <origin xyz="0 0 0.038" rpy="${mounted_tool_origin_rpy}" />
       <parent link="${prefix}mounting_plate_top" />
       <child link="${mounted_tool}" />
     </joint>
