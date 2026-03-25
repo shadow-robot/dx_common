@@ -25,7 +25,7 @@
 -->
 
 <robot name="dexee_config_2_right_hand" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="dexee_config_2_right_hand" params="prefix:=^">
+  <xacro:macro name="dexee_config_2_right_hand" params="prefix:=^ distal_type:=^">
     <link name="${prefix}hand_base">
       <inertial>
         <origin xyz="-0.0127919094737466 -0.0312883650011838 0.0461427138469727" rpy="0 0 0" />
