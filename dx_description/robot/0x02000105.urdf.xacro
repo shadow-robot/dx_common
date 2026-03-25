@@ -33,7 +33,7 @@
     <parent link="world" />
     <child link="$(arg prefix)hand_base" />
   </joint>
-  <xacro:dexee_config_1_hand prefix="$(arg prefix)" />
+  <xacro:dexee_config_1_hand prefix="$(arg prefix)" distal_type="$(arg distal_type)"/>
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
         <!-- <robotNamespace>/</robotNamespace>
