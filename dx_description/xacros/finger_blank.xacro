@@ -24,20 +24,37 @@
  software, even if advised of the possibility of such damage.
 -->
 
-<robot name="dexee_config_1_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find dx_description)/robot/0x02000106.xacro" />
-  <xacro:arg name="prefix" default="" />
-  <xacro:arg name="distal_type" default="sparkle" />  <!-- "sparkle" or "magtac" -->
-  <link name="world" />
-  <joint name="$(arg prefix)world_joint" type="fixed">
-    <parent link="world" />
-    <child link="$(arg prefix)hand_base" />
-  </joint>
-  <xacro:dexee_config_1_hand prefix="$(arg prefix)" distal_type="$(arg distal_type)" />
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-        <!-- <robotNamespace>/</robotNamespace>
-        <legacyModeNS>false</legacyModeNS> -->
-    </plugin>
-  </gazebo>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="macro_finger_blank" params="prefix:=^ finger_id parent *origin">
+    <joint name="${prefix}world_joint_${finger_id}" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}" />
+      <child link="${prefix}${finger_id}_base" />
+    </joint>
+    <link name="${prefix}${finger_id}_base">
+      <inertial>
+        <origin rpy="1.5707 0 0" xyz="0.00008 -0.092 -0.00062"/>
+        <mass value="0.04087"/>
+        <inertia ixx="0.0004534284" ixy="-4.3115e-07" ixz="-3.57299999e-08" iyy="0.0000246748" iyz="0.0000321231" izz="0.0004555261"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5707 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/extras/Finger_blank.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5707 0 0" />
+        <geometry>
+          <mesh filename="package://dx_description/meshes/extras/collision/Finger_blank.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${prefix}${finger_id}_base">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  </xacro:macro>
 </robot>
