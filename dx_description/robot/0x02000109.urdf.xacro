@@ -27,7 +27,7 @@
 <robot name="dexee_config_2_left_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:include filename="$(find dx_description)/robot/0x02000109.xacro" />
   <xacro:arg name="prefix" default="" />
-  <xacro:arg name="distal_type" default="sparkle" />  <!-- "sparkle" or "magtac" -->
+  <xacro:arg name="distal_type" default="magtac" />  <!-- "sparkle" or "magtac" -->
   <link name="world" />
   <joint name="$(arg prefix)world_joint" type="fixed">
     <parent link="world" />
